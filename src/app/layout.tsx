@@ -1,4 +1,5 @@
 import { inter } from "@/app/fonts";
+import "./globals.css";
 
 export const metadata = {
   title: "Homies Chat",
@@ -12,7 +13,7 @@ export default function RootLayout({
 }) {
   return (
     <html lang="pt-BR" className={inter.className}>
-      <body>{children}</body>
+      <body className="h-screen overflow-hidden">{children}</body>
     </html>
   );
 }
