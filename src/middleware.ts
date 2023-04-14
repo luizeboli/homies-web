@@ -2,7 +2,7 @@ import { withClerkMiddleware, getAuth } from "@clerk/nextjs/server";
 import { NextResponse } from "next/server";
 import type { NextRequest } from "next/server";
 
-const publicPaths = ["/login*", "/register*", "/client"];
+const publicPaths = ["/login*", "/register*"];
 
 const isPublic = (path: string) => {
   return publicPaths.find((x) =>
