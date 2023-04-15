@@ -5,7 +5,7 @@ export function ChatListItem() {
   return (
     <Link
       href="/conversation/123"
-      className="flex items-center gap-3 rounded-xl bg-neutral-800 p-5 focus:ring-2 focus:ring-purple-500 focus:ring-offset-2 focus:ring-offset-neutral-900"
+      className="flex items-center gap-3 rounded-xl bg-neutral-800 p-5 hover:bg-white/10 focus:ring-2 focus:ring-purple-500 focus:ring-offset-2 focus:ring-offset-neutral-900"
     >
       <Image
         src="https://placehold.co/40.png"
