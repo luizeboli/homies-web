@@ -12,7 +12,7 @@ export function ChatTimeline() {
           height={36}
           className="shrink-0 rounded-full ring-2 ring-purple-500 ring-offset-2 ring-offset-neutral-900"
         />
-        <h2 className="text-sm">
+        <h2 className="text-sm text-zinc-300">
           Conversation with <b>O Atendente</b>
         </h2>
       </div>
