@@ -3,7 +3,7 @@ import { ChatMessageInput } from "./ChatMessageInput";
 
 export function ChatTimeline() {
   return (
-    <div className="flex w-full flex-col p-6 pb-4 text-zinc-300">
+    <div className="flex w-full flex-col p-6 pb-4">
       <div className="mb-10 flex items-center gap-4">
         <Image
           src="https://placehold.co/40.png"

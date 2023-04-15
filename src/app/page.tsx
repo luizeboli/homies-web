@@ -6,7 +6,7 @@ export default async function Home() {
   const { sessionId } = await auth();
 
   return (
-    <main className="flex flex-col text-white">
+    <main className="flex flex-col">
       {sessionId}
       <Link href="/login">Signin</Link>
       <SignOut />

@@ -25,7 +25,7 @@ export default async function RootLayout({
       }}
     >
       <html lang="pt-BR" className={inter.className}>
-        <body className="h-screen overflow-hidden bg-neutral-900">
+        <body className="h-screen overflow-hidden bg-neutral-900 text-zinc-100">
           {children}
         </body>
       </html>
@@ -34,9 +34,9 @@ export default async function RootLayout({
 }
 
 const formFieldInputClassnames = classnames(
-  "w-full rounded-md border-neutral-700 bg-neutral-800 text-sm text-white/90 placeholder:text-neutral-500 focus:border-neutral-700 focus:ring-2 focus:ring-purple-500 focus:ring-offset-2 focus:ring-offset-neutral-900"
+  "w-full rounded-md border-neutral-700 bg-neutral-800 text-sm placeholder:text-neutral-500 focus:border-neutral-700 focus:ring-2 focus:ring-purple-500 focus:ring-offset-2 focus:ring-offset-neutral-900"
 );
 
 const formButtonPrimaryClassnames = classnames(
-  "flex w-full justify-center rounded-lg bg-gradient-to-r from-purple-500 to-pink-500 px-5 py-2.5 text-center text-sm font-medium text-white hover:bg-gradient-to-l focus:ring-2 focus:ring-purple-500 focus:ring-offset-2 focus:ring-offset-neutral-900 disabled:cursor-wait disabled:opacity-60"
+  "flex w-full justify-center rounded-lg bg-gradient-to-r from-purple-500 to-pink-500 px-5 py-2.5 text-center text-sm font-medium hover:bg-gradient-to-l focus:ring-2 focus:ring-purple-500 focus:ring-offset-2 focus:ring-offset-neutral-900 disabled:cursor-wait disabled:opacity-60"
 );
