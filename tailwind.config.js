@@ -8,32 +8,25 @@ module.exports = {
     require("@tailwindcss/forms"),
     require("autoprefixer"),
     /** @type {import('tailwindcss/types/config').PluginCreator} */
-    ({ addUtilities }) =>
+    ({ addUtilities, theme }) =>
       addUtilities({
         ".custom-scroll": {
-          "&:hover": {
-            "&::-webkit-scrollbar": {
-              width: 18,
-            },
-
-            "&::-webkit-scrollbar-thumb": {
-              border: "6px solid rgba(0, 0, 0, 0)",
-              backgroundClip: "padding-box",
-              borderRadius: "9999px",
-              backgroundColor: "#AAAAAA",
-            },
-          },
-
           "&::-webkit-scrollbar": {
-            width: 18,
+            width: 12,
           },
+
           "&::-webkit-scrollbar-thumb": {
-            backgroundColor: "transparent",
-            borderRadius: 6,
+            border: "2px solid rgba(0, 0, 0, 0)",
+            backgroundClip: "padding-box",
+            borderRadius: "9999px",
+            backgroundColor: theme("colors.gray.500"),
           },
+
           "&::-webkit-scrollbar-track": {
-            boxShadow: "none",
-            margin: "0",
+            background: "transparent",
+            border: "1px solid",
+            borderColor: theme("colors.zinc.700"),
+            borderRadius: "9999px",
           },
           scrollbarColor: "transparent transparent",
           scrollbarWidth: "thin",
