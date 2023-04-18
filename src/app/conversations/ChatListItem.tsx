@@ -1,11 +1,19 @@
+import { Conversation } from "@/types";
 import Image from "next/image";
 import Link from "next/link";
 
-export function ChatListItem() {
+type ChatListItemProps = {
+  conversation: Conversation;
+};
+
+export function ChatListItem({ conversation }: ChatListItemProps) {
+  const { users, id } = conversation;
+
   return (
     <Link
-      href="/conversation/123"
+      href={`/conversation/${id}`}
       className="flex items-center gap-3 rounded-xl bg-neutral-800 p-5 hover:bg-white/10 focus:ring-2 focus:ring-purple-500 focus:ring-offset-2 focus:ring-offset-neutral-900"
+      role="listitem"
     >
       <Image
         src="https://placehold.co/40.png"
@@ -16,7 +24,7 @@ export function ChatListItem() {
       />
       <div className="min-w-0">
         <p className="overflow-hidden text-ellipsis whitespace-nowrap text-sm font-semibold">
-          O Atendente
+          {users.map((user) => user.username).join(", ")}
         </p>
         <p className="overflow-hidden text-ellipsis whitespace-nowrap text-xs text-zinc-400">
           Olá senhor, você poderia me passar seu contato?

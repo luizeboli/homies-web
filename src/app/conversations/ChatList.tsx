@@ -4,8 +4,13 @@ import { PlusIcon } from "@heroicons/react/24/solid";
 import { ChatListItem } from "./ChatListItem";
 import { Popover, Transition } from "@headlessui/react";
 import { Fragment } from "react";
+import { Conversation } from "@/types";
 
-export function ChatList() {
+type ChatListProps = {
+  conversations: Conversation[];
+};
+
+export function ChatList({ conversations }: ChatListProps) {
   return (
     <div className="flex w-full max-w-sm flex-col p-6 pb-0">
       <div className="mb-10 flex items-center justify-between">
@@ -42,22 +47,11 @@ export function ChatList() {
         </Popover>
       </div>
 
-      <div className="space-y-3 overflow-y-auto p-2 custom-scroll">
-        <ChatListItem />
-        <ChatListItem />
-        <ChatListItem />
-        <ChatListItem />
-        <ChatListItem />
-        <ChatListItem />
-        <ChatListItem />
-        <ChatListItem />
-        <ChatListItem />
-        <ChatListItem />
-        <ChatListItem />
-        <ChatListItem />
-        <ChatListItem />
-        <ChatListItem />
-      </div>
+      <ul className="space-y-3 overflow-y-auto p-2 custom-scroll">
+        {conversations.map((conversation) => (
+          <ChatListItem key={conversation.id} conversation={conversation} />
+        ))}
+      </ul>
     </div>
   );
 }
