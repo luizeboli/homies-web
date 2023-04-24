@@ -1,9 +1,9 @@
-import { auth } from "@clerk/nextjs/app-beta";
 import { ChatList } from "./ChatList";
 import { ChatTimeline } from "./ChatTimeline";
+import { serverFetcher } from "@/utils/serverFetcher";
 
 export default async function Page() {
-  const conversations = await getConversations();
+  const conversations = await serverFetcher("/conversations");
 
   return (
     <main className="flex h-full">
@@ -12,22 +12,4 @@ export default async function Page() {
       <ChatTimeline />
     </main>
   );
-}
-
-async function getConversations() {
-  const { getToken } = auth();
-  const token = await getToken();
-
-  const response = await fetch(
-    `${process.env.NEXT_PUBLIC_API_URL}/conversations`,
-    {
-      headers: {
-        authorization: `Bearer ${token}`,
-      },
-      cache: "no-cache",
-    }
-  );
-
-  const conversations = await response.json();
-  return conversations;
 }
