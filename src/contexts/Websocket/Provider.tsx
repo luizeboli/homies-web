@@ -21,6 +21,13 @@ export function WebsocketProvider({ children }: WebsocketProviderProps) {
     socketIo.connect();
     setSocket(socketIo);
 
+    socketIo.on("exception", async (error) => {
+      if (error.message === "Forbidden resource") {
+        socketIo.disconnect();
+        socketIo.connect();
+      }
+    });
+
     return () => {
       socketIo.disconnect();
     };
