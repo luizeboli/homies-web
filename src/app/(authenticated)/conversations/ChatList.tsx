@@ -5,12 +5,18 @@ import { ChatListItem } from "./ChatListItem";
 import { Popover, Transition } from "@headlessui/react";
 import { Fragment } from "react";
 import { Conversation } from "@/types";
+import { useAppStore } from "@/store/app";
 
 type ChatListProps = {
   conversations: Conversation[];
 };
 
-export function ChatList({ conversations }: ChatListProps) {
+export function ChatList({
+  conversations: initialConversations,
+}: ChatListProps) {
+  const storeConversations = useAppStore.use.conversations();
+  const conversations = [...storeConversations, ...initialConversations];
+
   return (
     <div className="flex w-full max-w-sm flex-col p-6 pb-0">
       <div className="mb-10 flex items-center justify-between">
