@@ -8,14 +8,14 @@ export function ChatList() {
   const conversations = useAppStore((state) => state.conversations);
 
   return (
-    <div className="flex w-full max-w-sm flex-col p-6 pb-0">
+    <div className="mr-6 flex w-full max-w-sm flex-col">
       <div className="mb-10 flex items-center justify-between">
         <h1 className="text-2xl">Conversations</h1>
 
         <NewConversationPopover />
       </div>
 
-      <ul className="space-y-3 overflow-y-auto p-2 custom-scroll">
+      <ul className="space-y-3 overflow-y-auto pr-2 custom-scroll">
         {conversations.map((conversation) => (
           <ChatListItem key={conversation.id} conversation={conversation} />
         ))}

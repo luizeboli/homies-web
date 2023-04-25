@@ -1,21 +1,22 @@
-import { AppStoreProvider } from "@/contexts/AppStore/Provider";
-import { ChatList } from "./ChatList";
-import { ChatTimeline } from "./ChatTimeline";
-import { serverFetcher } from "@/utils/serverFetcher";
-import { AppProviders } from "@/components/AppProviders";
+import Image from "next/image";
 
 export default async function Page() {
-  const conversations = await serverFetcher("/conversations");
-
   return (
-    <AppStoreProvider conversations={conversations}>
-      <AppProviders>
-        <main className="flex h-full">
-          <ChatList />
-
-          <ChatTimeline />
-        </main>
-      </AppProviders>
-    </AppStoreProvider>
+    <div className="grid h-full w-full place-items-center text-center">
+      <div className="max-w-lg">
+        <Image
+          src="/begin_chat.svg"
+          width={250}
+          height={250}
+          alt="Illustration of a woman starting a chat conversation"
+          className="mx-auto mb-5"
+        />
+        <h2 className="mb-2 text-xl">Welcome!</h2>
+        <h3 className="text-sm">
+          Homies is the perfect app to stay connected with your closest friends
+          and create new memories together. So why wait? Let&apos;s chat, homie!
+        </h3>
+      </div>
+    </div>
   );
 }
