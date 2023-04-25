@@ -4,7 +4,7 @@ import { useContext, useEffect, useState } from "react";
 import { WebsocketContext } from "./context";
 import { Socket, io } from "socket.io-client";
 import { WEBSOCKET_EVENTS } from "@/utils/constants";
-import { useAppStore } from "@/store/app";
+import { useAppStore } from "../AppStore/Provider";
 
 type WebsocketProviderProps = {
   children: React.ReactNode;
@@ -12,7 +12,7 @@ type WebsocketProviderProps = {
 
 export function WebsocketProvider({ children }: WebsocketProviderProps) {
   const [socket, setSocket] = useState<Socket | null>(null);
-  const addConversation = useAppStore.use.addConversation();
+  const addConversation = useAppStore((state) => state.addConversation);
 
   useEffect(() => {
     const socketIo = io(process.env.NEXT_PUBLIC_API_URL, {

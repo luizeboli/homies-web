@@ -1,19 +1,11 @@
 "use client";
 
 import { ChatListItem } from "./ChatListItem";
-import { Conversation } from "@/types";
-import { useAppStore } from "@/store/app";
 import { NewConversationPopover } from "./NewConversationPopover";
+import { useAppStore } from "@/contexts/AppStore/Provider";
 
-type ChatListProps = {
-  conversations: Conversation[];
-};
-
-export function ChatList({
-  conversations: initialConversations,
-}: ChatListProps) {
-  const storeConversations = useAppStore.use.conversations();
-  const conversations = [...storeConversations, ...initialConversations];
+export function ChatList() {
+  const conversations = useAppStore((state) => state.conversations);
 
   return (
     <div className="flex w-full max-w-sm flex-col p-6 pb-0">
