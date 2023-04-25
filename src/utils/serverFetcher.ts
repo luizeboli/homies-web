@@ -1,4 +1,5 @@
 import { auth } from "@clerk/nextjs/app-beta";
+import { notFound } from "next/navigation";
 
 type RequestOptions = {
   method?: "GET" | "POST" | "PUT" | "DELETE";
@@ -6,7 +7,7 @@ type RequestOptions = {
   cache?: RequestCache;
 };
 
-export async function serverFetcher(
+export async function serverFetcher<TData>(
   pathname: string,
   options: RequestOptions = {}
 ) {
@@ -23,7 +24,9 @@ export async function serverFetcher(
     }
   );
 
+  if (response.status === 404) notFound();
+
   if (response.status !== 200) throw new Error("Something wrong happened");
 
-  return await response.json();
+  return (await response.json()) as TData;
 }

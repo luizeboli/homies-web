@@ -2,7 +2,7 @@ import Image from "next/image";
 
 export default async function Page() {
   return (
-    <div className="grid h-full w-full place-items-center text-center">
+    <div>
       <div className="max-w-lg">
         <Image
           src="/begin_chat.svg"
