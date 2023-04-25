@@ -1,13 +1,26 @@
 import { Conversation } from "@/types";
+import { useAuth } from "@clerk/nextjs";
 import Image from "next/image";
 import Link from "next/link";
+import { useMemo } from "react";
 
 type ChatListItemProps = {
   conversation: Conversation;
 };
 
 export function ChatListItem({ conversation }: ChatListItemProps) {
-  const { users, id } = conversation;
+  const { userId } = useAuth();
+  const { users, id, owner } = conversation;
+
+  const usersToDisplay = useMemo(() => {
+    const imTheOwner = owner.id === userId;
+    if (imTheOwner) {
+      return users;
+    }
+
+    const usersWithoutMe = users.filter((user) => user.id !== userId);
+    return [owner, ...usersWithoutMe];
+  }, [users, userId]);
 
   return (
     <Link
@@ -24,7 +37,7 @@ export function ChatListItem({ conversation }: ChatListItemProps) {
       />
       <div className="min-w-0">
         <p className="overflow-hidden text-ellipsis whitespace-nowrap text-sm font-semibold">
-          {users.map((user) => user.username).join(", ")}
+          {usersToDisplay.map((user) => user.username).join(", ")}
         </p>
         <p className="overflow-hidden text-ellipsis whitespace-nowrap text-xs text-zinc-400">
           Olá senhor, você poderia me passar seu contato?
