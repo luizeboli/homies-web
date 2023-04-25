@@ -6,5 +6,10 @@ export type User = {
 export type Conversation = {
   id: string;
   ownerUsername: string;
+  owner: User;
   users: User[];
+};
+
+export type CreateConversation = {
+  usernames: string[];
 };
