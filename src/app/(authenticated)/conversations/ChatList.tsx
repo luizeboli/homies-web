@@ -1,11 +1,13 @@
 "use client";
 
+import { useParams } from "next/navigation";
 import { ChatListItem } from "./ChatListItem";
 import { NewConversationPopover } from "./NewConversationPopover";
 import { useAppStore } from "@/contexts/AppStore/Provider";
 
 export function ChatList() {
   const conversations = useAppStore((state) => state.conversations);
+  const params = useParams();
 
   return (
     <div className="mr-6 flex w-full max-w-sm flex-col">
@@ -17,7 +19,11 @@ export function ChatList() {
 
       <ul className="space-y-3 overflow-y-auto pr-2 custom-scroll">
         {conversations.map((conversation) => (
-          <ChatListItem key={conversation.id} conversation={conversation} />
+          <ChatListItem
+            key={conversation.id}
+            conversation={conversation}
+            isActive={params.conversationId === conversation.id}
+          />
         ))}
       </ul>
     </div>

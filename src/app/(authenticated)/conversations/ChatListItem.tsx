@@ -1,15 +1,17 @@
 import { Conversation } from "@/types";
 import { formatConversationUsers } from "@/utils/formatConversationUsers";
 import { useAuth } from "@clerk/nextjs";
+import classNames from "classnames";
 import Image from "next/image";
 import Link from "next/link";
 import { useMemo } from "react";
 
 type ChatListItemProps = {
   conversation: Conversation;
+  isActive: boolean;
 };
 
-export function ChatListItem({ conversation }: ChatListItemProps) {
+export function ChatListItem({ conversation, isActive }: ChatListItemProps) {
   const { userId } = useAuth();
   const { users, id, owner } = conversation;
 
@@ -21,7 +23,13 @@ export function ChatListItem({ conversation }: ChatListItemProps) {
   return (
     <Link
       href={`/conversations/${id}`}
-      className="flex items-center gap-3 rounded-xl bg-neutral-800 p-5 ring-inset hover:bg-white/10 focus:ring-2 focus:ring-purple-500 focus:ring-offset-2 focus:ring-offset-neutral-900"
+      className={classNames(
+        "relative flex items-center gap-3 rounded-xl bg-neutral-800 p-5 ring-inset hover:bg-white/10 focus:ring-2 focus:ring-purple-500 focus:ring-offset-2 focus:ring-offset-neutral-900",
+        {
+          "bg-white/20 before:absolute before:left-0 before:h-[95%] before:w-2 before:rounded-l-lg before:bg-pink-500":
+            isActive,
+        }
+      )}
       role="listitem"
     >
       <Image
