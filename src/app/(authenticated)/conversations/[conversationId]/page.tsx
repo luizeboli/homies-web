@@ -1,5 +1,7 @@
 import { Conversation } from "@/types";
 import { serverFetcher } from "@/utils/serverFetcher";
+import { CurrentConversationSetter } from "./CurrentConversationSetter";
+import { ChatTimeline } from "./ChatTimeline";
 
 type PageProps = {
   params: {
@@ -13,5 +15,9 @@ export default async function Page({ params }: PageProps) {
     `/conversations/${conversationId}`
   );
 
-  return <h1>Conversation {conversation.id}</h1>;
+  return (
+    <CurrentConversationSetter conversation={conversation}>
+      <ChatTimeline />
+    </CurrentConversationSetter>
+  );
 }

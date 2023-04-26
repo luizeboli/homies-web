@@ -1,4 +1,5 @@
 import { Conversation } from "@/types";
+import { formatConversationUsers } from "@/utils/formatConversationUsers";
 import { useAuth } from "@clerk/nextjs";
 import Image from "next/image";
 import Link from "next/link";
@@ -12,15 +13,10 @@ export function ChatListItem({ conversation }: ChatListItemProps) {
   const { userId } = useAuth();
   const { users, id, owner } = conversation;
 
-  const usersToDisplay = useMemo(() => {
-    const imTheOwner = owner.id === userId;
-    if (imTheOwner) {
-      return users;
-    }
-
-    const usersWithoutMe = users.filter((user) => user.id !== userId);
-    return [owner, ...usersWithoutMe];
-  }, [users, userId]);
+  const usersToDisplay = useMemo(
+    () => formatConversationUsers({ owner, userId, users }),
+    [owner, userId, users]
+  );
 
   return (
     <Link

@@ -1,9 +1,24 @@
+"use client";
 import Image from "next/image";
 import { ChatMessageInput } from "./ChatMessageInput";
+import { useAppStore } from "@/contexts/AppStore/Provider";
+import { useMemo } from "react";
+import { formatConversationUsers } from "@/utils/formatConversationUsers";
+import { useAuth } from "@clerk/nextjs";
 
 export function ChatTimeline() {
+  const { userId } = useAuth();
+  const activeConversation = useAppStore((state) => state.activeConversation);
+
+  const usersToDisplay = useMemo(() => {
+    if (!activeConversation) return [];
+
+    const { owner, users } = activeConversation;
+    return formatConversationUsers({ owner, userId, users });
+  }, [activeConversation]);
+
   return (
-    <div className="flex w-full flex-col p-6 pb-4">
+    <div className="flex h-full w-full flex-col pb-4">
       <div className="mb-10 flex items-center gap-4">
         <Image
           src="https://placehold.co/36.png"
@@ -13,7 +28,8 @@ export function ChatTimeline() {
           className="shrink-0 rounded-full ring-2 ring-purple-500 ring-offset-2 ring-offset-neutral-900"
         />
         <h2 className="text-sm text-zinc-300">
-          Conversation with <b>O Atendente</b>
+          Conversation with{" "}
+          <b>{usersToDisplay?.map((user) => user.username).join(", ")}</b>
         </h2>
       </div>
 
