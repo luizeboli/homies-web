@@ -1,9 +1,9 @@
 "use client";
 import { useContext, useRef } from "react";
 import { AppStoreContext } from "./context";
-import { AppState, AppStore, createAppStore } from "@/store/app";
+import { AppState, createAppStore } from "@/store/app";
 import { Conversation } from "@/types";
-import { createStore, useStore } from "zustand";
+import { useStore } from "zustand";
 import createSelectors from "@/store/createSelectors";
 
 type AppStoreProviderProps = {

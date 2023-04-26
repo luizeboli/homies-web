@@ -3,7 +3,7 @@ import { useAppStore } from "@/contexts/AppStore/Provider";
 import { formatConversationUsers } from "@/utils/formatConversationUsers";
 import { useAuth } from "@clerk/nextjs";
 import { PaperAirplaneIcon } from "@heroicons/react/24/solid";
-import { useEffect, useMemo, useRef } from "react";
+import { useMemo, useRef } from "react";
 
 export function ChatMessageInput() {
   const { userId } = useAuth();

@@ -2,7 +2,6 @@
 
 import { useAppStore } from "@/contexts/AppStore/Provider";
 import { Conversation } from "@/types";
-import { useState } from "react";
 
 type CurrentConversationSetterProps = {
   children: React.ReactNode;

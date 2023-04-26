@@ -1,5 +1,5 @@
 import { Conversation } from "@/types";
-import { create, createStore } from "zustand";
+import { createStore } from "zustand";
 
 interface AppProps {
   conversations: Conversation[];
@@ -27,8 +27,8 @@ export const createAppStore = (initProps?: Partial<AppProps>) => {
         conversations: [conversation, ...state.conversations],
       })),
     setActiveConversation: (conversation: Conversation) =>
-      set((state) => ({
+      set({
         activeConversation: conversation,
-      })),
+      }),
   }));
 };
