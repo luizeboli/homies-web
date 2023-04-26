@@ -8,8 +8,17 @@ export type Conversation = {
   ownerUsername: string;
   owner: User;
   users: User[];
+  messages: Message[];
 };
 
 export type CreateConversation = {
   usernames: string[];
+};
+
+export type Message = {
+  id: string;
+  conversationId: string;
+  authorId: string;
+  content: string;
+  createdAt: Date;
 };

@@ -2,7 +2,7 @@ import Image from "next/image";
 
 export default function NotFound() {
   return (
-    <div className="max-w-lg">
+    <div className="mx-auto max-w-lg text-center">
       <Image
         src="/404.svg"
         width={250}

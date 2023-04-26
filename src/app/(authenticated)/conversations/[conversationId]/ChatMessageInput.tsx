@@ -24,10 +24,7 @@ export function ChatMessageInput() {
   }, [activeConversation, userId]);
 
   return (
-    <form
-      className="mt-auto flex items-center gap-4 p-6"
-      onSubmit={handleSubmit}
-    >
+    <form className="flex items-center gap-4 p-6" onSubmit={handleSubmit}>
       <input
         ref={inputRef}
         autoComplete="homies-conversation-input"

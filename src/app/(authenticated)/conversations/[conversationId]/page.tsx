@@ -12,7 +12,7 @@ type PageProps = {
 export default async function Page({ params }: PageProps) {
   const { conversationId } = params;
   const conversation = await serverFetcher<Conversation>(
-    `/conversations/${conversationId}`
+    `/conversations/${conversationId}?messages=true`
   );
 
   return (
