@@ -15,7 +15,7 @@ export function ChatTimeline() {
 
     const { owner, users } = activeConversation;
     return formatConversationUsers({ owner, userId, users });
-  }, [activeConversation]);
+  }, [activeConversation, userId]);
 
   return (
     <div className="flex h-full w-full flex-col pb-4">
