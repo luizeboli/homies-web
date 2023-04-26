@@ -16,9 +16,7 @@ export default async function Layout({ children }: LayoutProps) {
       <AppProviders>
         <main className="flex h-full p-6 pb-0">
           <ChatList />
-          <div className="grid h-full w-full place-items-center text-center">
-            {children}
-          </div>
+          {children}
         </main>
       </AppProviders>
     </AppStoreProvider>
