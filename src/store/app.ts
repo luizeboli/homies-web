@@ -1,34 +1,24 @@
-import { Conversation } from "@/types";
-import { createStore } from "zustand";
+import { Conversation, Message } from "@/types";
+import { create } from "zustand";
+import createSelectors from "./createSelectors";
 
-interface AppProps {
+export interface AppStoreState {
+  messages: Message[];
   conversations: Conversation[];
-  activeConversation: Conversation | null;
 }
-
-export interface AppState extends AppProps {
+export interface AppStore extends AppStoreState {
   addConversation: (conversation: Conversation) => void;
-  setActiveConversation: (conversation: Conversation) => void;
+  initializePieceOfState: (state: Partial<AppStoreState>) => void;
 }
 
-export type AppStore = ReturnType<typeof createAppStore>;
+const store = create<AppStore>((set) => ({
+  messages: [],
+  conversations: [],
+  addConversation: (conversation) =>
+    set((state) => ({
+      conversations: [conversation, ...state.conversations],
+    })),
+  initializePieceOfState: (state) => set(state),
+}));
 
-export const createAppStore = (initProps?: Partial<AppProps>) => {
-  const DEFAULT_PROPS: AppProps = {
-    conversations: [],
-    activeConversation: null,
-  };
-
-  return createStore<AppState>((set) => ({
-    ...DEFAULT_PROPS,
-    ...initProps,
-    addConversation: (conversation: Conversation) =>
-      set((state) => ({
-        conversations: [conversation, ...state.conversations],
-      })),
-    setActiveConversation: (conversation: Conversation) =>
-      set({
-        activeConversation: conversation,
-      }),
-  }));
-};
+export const useAppStore = createSelectors(store);

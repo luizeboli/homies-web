@@ -3,7 +3,7 @@
 import { useParams } from "next/navigation";
 import { ChatListItem } from "./ChatListItem";
 import { NewConversationPopover } from "./NewConversationPopover";
-import { useAppStore } from "@/contexts/AppStore/Provider";
+import { useAppStore } from "@/store/app";
 
 export function ChatList() {
   const conversations = useAppStore((state) => state.conversations);

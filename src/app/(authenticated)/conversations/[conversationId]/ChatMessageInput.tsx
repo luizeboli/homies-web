@@ -1,5 +1,5 @@
 "use client";
-import { useAppStore } from "@/contexts/AppStore/Provider";
+import { useAppStore } from "@/store/app";
 import { formatConversationUsers } from "@/utils/formatConversationUsers";
 import { useAuth } from "@clerk/nextjs";
 import { PaperAirplaneIcon } from "@heroicons/react/24/solid";

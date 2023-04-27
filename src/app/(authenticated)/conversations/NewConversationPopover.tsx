@@ -7,7 +7,7 @@ import { ArrowPathIcon, PlusIcon, XMarkIcon } from "@heroicons/react/24/solid";
 import { Fragment, FormEvent, useState, useMemo, useRef } from "react";
 import { useDebouncedValue } from "@/hooks/useDebouncedValue";
 import { useCreateConversation } from "@/mutations/useCreateConversation";
-import { useAppStore } from "@/contexts/AppStore/Provider";
+import { useAppStore } from "@/store/app";
 
 export function NewConversationPopover() {
   const addConversation = useAppStore((state) => state.addConversation);

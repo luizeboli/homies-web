@@ -1,15 +1,23 @@
 "use client";
 import Image from "next/image";
 import { ChatMessageInput } from "./ChatMessageInput";
-import { useAppStore } from "@/contexts/AppStore/Provider";
+import { useAppStore } from "@/store/app";
 import { useMemo } from "react";
 import { formatConversationUsers } from "@/utils/formatConversationUsers";
 import { useAuth } from "@clerk/nextjs";
 import { ChatMessagesList } from "./ChatMessagesList";
+import { useParams } from "next/navigation";
 
 export function ChatTimeline() {
   const { userId } = useAuth();
-  const activeConversation = useAppStore((state) => state.activeConversation);
+  const activeConversation = useAppStore((state) =>
+    state.conversations.find(
+      (conversation) => conversation.id === conversationId
+    )
+  );
+
+  const params = useParams();
+  const { conversationId } = params;
 
   const usersToDisplay = useMemo(() => {
     if (!activeConversation) return [];
