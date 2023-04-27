@@ -26,6 +26,10 @@ export function ChatTimeline() {
     return formatConversationUsers({ owner, userId, users });
   }, [activeConversation, userId]);
 
+  if (!activeConversation) {
+    notFound();
+  }
+
   return (
     <div className="flex h-full w-full flex-col pb-4">
       <div className="mb-10 flex items-center gap-4">
