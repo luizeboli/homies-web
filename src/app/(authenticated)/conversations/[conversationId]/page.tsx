@@ -1,7 +1,7 @@
-import { Conversation } from "@/types";
+import { Message } from "@/types";
 import { serverFetcher } from "@/utils/serverFetcher";
-import { CurrentConversationSetter } from "./CurrentConversationSetter";
 import { ChatTimeline } from "./ChatTimeline";
+import { StateInitializer } from "@/components/StateInitializer";
 
 type PageProps = {
   params: {
@@ -11,13 +11,14 @@ type PageProps = {
 
 export default async function Page({ params }: PageProps) {
   const { conversationId } = params;
-  const conversation = await serverFetcher<Conversation>(
-    `/conversations/${conversationId}?messages=true`
+
+  const messages = await serverFetcher<Message[]>(
+    `/conversations/${conversationId}/messages?take=1`
   );
 
   return (
-    <CurrentConversationSetter conversation={conversation}>
+    <StateInitializer state={{ messages }}>
       <ChatTimeline />
-    </CurrentConversationSetter>
+    </StateInitializer>
   );
 }

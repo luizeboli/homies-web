@@ -18,6 +18,7 @@ export function ChatTimeline() {
       (conversation) => conversation.id === conversationId
     )
   );
+  const messages = useAppStore.use.messages();
 
   const usersToDisplay = useMemo(() => {
     if (!activeConversation) return [];
@@ -47,7 +48,7 @@ export function ChatTimeline() {
       </div>
 
       <div className="flex h-full grow flex-col overflow-hidden rounded-xl bg-neutral-800">
-        <ChatMessagesList messages={activeConversation?.messages ?? []} />
+        <ChatMessagesList messages={messages} />
 
         <ChatMessageInput activeConversation={activeConversation} />
       </div>
