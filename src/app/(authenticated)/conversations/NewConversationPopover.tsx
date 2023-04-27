@@ -63,7 +63,7 @@ export function NewConversationPopover() {
 
   return (
     <Popover className="relative">
-      <Popover.Overlay className="fixed inset-0 bg-black opacity-30" />
+      <Popover.Overlay className="fixed inset-0 z-10 bg-black opacity-30" />
       <Popover.Button className="justify-center rounded-full bg-gradient-to-r from-purple-600 to-pink-700 p-1 hover:bg-gradient-to-l focus:ring-2 focus:ring-purple-500 focus:ring-offset-2 focus:ring-offset-neutral-900">
         <PlusIcon className="w-4 fill-white" />
       </Popover.Button>
@@ -76,7 +76,7 @@ export function NewConversationPopover() {
         leaveFrom="opacity-100 translate-y-0"
         leaveTo="opacity-0 translate-y-1"
       >
-        <Popover.Panel className="absolute w-screen max-w-sm rounded-md border border-neutral-700 bg-neutral-800 p-4 drop-shadow-lg">
+        <Popover.Panel className="absolute z-20 w-screen max-w-sm rounded-md border border-neutral-700 bg-neutral-800 p-4 drop-shadow-lg">
           <div className="mb-4">
             <p>New Conversation</p>
             <p className="text-xs text-zinc-400">
