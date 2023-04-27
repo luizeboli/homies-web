@@ -24,9 +24,11 @@ export async function serverFetcher<TData>(
     }
   );
 
+  const data = await response.json();
+
   if (response.status === 404) notFound();
 
-  if (response.status !== 200) throw new Error("Something wrong happened");
+  if (response.status !== 200) throw new Error(data.message);
 
-  return (await response.json()) as TData;
+  return data as TData;
 }
