@@ -45,7 +45,7 @@ export function ChatTimeline() {
       <div className="flex h-full grow flex-col overflow-hidden rounded-xl bg-neutral-800">
         <ChatMessagesList messages={activeConversation?.messages ?? []} />
 
-        <ChatMessageInput />
+        <ChatMessageInput activeConversation={activeConversation} />
       </div>
     </div>
   );

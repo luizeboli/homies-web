@@ -1,14 +1,19 @@
 "use client";
-import { useAppStore } from "@/store/app";
+import { Conversation } from "@/types";
 import { formatConversationUsers } from "@/utils/formatConversationUsers";
 import { useAuth } from "@clerk/nextjs";
 import { PaperAirplaneIcon } from "@heroicons/react/24/solid";
 import { useMemo, useRef } from "react";
 
-export function ChatMessageInput() {
+type ChatMessageInputProps = {
+  activeConversation: Conversation;
+};
+
+export function ChatMessageInput({
+  activeConversation,
+}: ChatMessageInputProps) {
   const { userId } = useAuth();
   const inputRef = useRef<HTMLInputElement | null>(null);
-  const activeConversation = useAppStore((state) => state.activeConversation);
 
   const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
