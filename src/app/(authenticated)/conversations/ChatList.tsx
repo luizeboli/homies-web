@@ -17,7 +17,7 @@ export function ChatList() {
         <NewConversationPopover />
       </div>
 
-      <ul className="space-y-3 overflow-y-auto pr-2 custom-scroll">
+      <ul className="space-y-3 overflow-y-auto pr-2 custom-scroll [overflow-anchor:auto]">
         {conversations.map((conversation) => (
           <ChatListItem
             key={conversation.id}
