@@ -6,7 +6,7 @@ import { useMemo } from "react";
 import { formatConversationUsers } from "@/utils/formatConversationUsers";
 import { useAuth } from "@clerk/nextjs";
 import { ChatMessagesList } from "./ChatMessagesList";
-import { useParams } from "next/navigation";
+import { notFound, useParams } from "next/navigation";
 
 export function ChatTimeline() {
   const { userId } = useAuth();
