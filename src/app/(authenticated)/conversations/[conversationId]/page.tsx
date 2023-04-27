@@ -13,7 +13,7 @@ export default async function Page({ params }: PageProps) {
   const { conversationId } = params;
 
   const messages = await serverFetcher<Message[]>(
-    `/conversations/${conversationId}/messages?take=1`
+    `/conversations/${conversationId}/messages?take=50`
   );
 
   return (

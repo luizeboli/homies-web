@@ -2,14 +2,17 @@
 import Image from "next/image";
 import { ChatMessageInput } from "./ChatMessageInput";
 import { useAppStore } from "@/store/app";
-import { useMemo } from "react";
+import { useEffect, useMemo } from "react";
 import { formatConversationUsers } from "@/utils/formatConversationUsers";
 import { useAuth } from "@clerk/nextjs";
 import { ChatMessagesList } from "./ChatMessagesList";
 import { notFound, useParams } from "next/navigation";
+import { useWebsocket } from "@/contexts/Websocket/Provider";
+import { WEBSOCKET_EVENTS } from "@/utils/constants";
 
 export function ChatTimeline() {
   const { userId } = useAuth();
+  const socket = useWebsocket();
 
   const params = useParams();
   const { conversationId } = params;
@@ -19,6 +22,7 @@ export function ChatTimeline() {
     )
   );
   const messages = useAppStore.use.messages();
+  const addMessage = useAppStore.use.addMessage();
 
   const usersToDisplay = useMemo(() => {
     if (!activeConversation) return [];
@@ -26,6 +30,24 @@ export function ChatTimeline() {
     const { owner, users } = activeConversation;
     return formatConversationUsers({ owner, userId, users });
   }, [activeConversation, userId]);
+
+  useEffect(() => {
+    if (!socket) return;
+
+    socket.on(WEBSOCKET_EVENTS.MESSAGE.CREATED, (message) => {
+      addMessage(message);
+    });
+
+    return () => {
+      socket.off(WEBSOCKET_EVENTS.MESSAGE.CREATED);
+    };
+  }, [socket, addMessage]);
+
+  useEffect(() => {
+    if (!socket) return;
+
+    socket.emit(WEBSOCKET_EVENTS.CONVERSATION.JOINED, conversationId);
+  }, [socket, conversationId]);
 
   if (!activeConversation) {
     notFound();

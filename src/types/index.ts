@@ -19,6 +19,7 @@ export type Message = {
   id: string;
   conversationId: string;
   authorId: string;
+  author: User;
   content: string;
   createdAt: Date;
 };

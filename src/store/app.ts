@@ -7,12 +7,15 @@ export interface AppStoreState {
   conversations: Conversation[];
 }
 export interface AppStore extends AppStoreState {
+  addMessage: (message: Message) => void;
   addConversation: (conversation: Conversation) => void;
   initializePieceOfState: (state: Partial<AppStoreState>) => void;
 }
 
 const store = create<AppStore>((set) => ({
   messages: [],
+  addMessage: (message) =>
+    set((state) => ({ messages: [message, ...state.messages] })),
   conversations: [],
   addConversation: (conversation) =>
     set((state) => ({
