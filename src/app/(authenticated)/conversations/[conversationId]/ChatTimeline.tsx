@@ -10,14 +10,14 @@ import { useParams } from "next/navigation";
 
 export function ChatTimeline() {
   const { userId } = useAuth();
+
+  const params = useParams();
+  const { conversationId } = params;
   const activeConversation = useAppStore((state) =>
     state.conversations.find(
       (conversation) => conversation.id === conversationId
     )
   );
-
-  const params = useParams();
-  const { conversationId } = params;
 
   const usersToDisplay = useMemo(() => {
     if (!activeConversation) return [];
