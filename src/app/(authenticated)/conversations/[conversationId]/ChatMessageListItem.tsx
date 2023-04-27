@@ -10,7 +10,7 @@ export function ChatMessageListItem({ message }: ChatMessageListItemProps) {
   return (
     <li className="flex items-end gap-4">
       <Image
-        src={faker.image.avatar()}
+        src="https://i.pravatar.cc/300"
         alt="Avatar"
         width={40}
         height={40}
