@@ -3,7 +3,7 @@ import Image from "next/image";
 export default async function Page() {
   return (
     <div>
-      <div className="max-w-lg">
+      <div className="max-w-lg text-center">
         <Image
           src="/begin_chat.svg"
           width={250}
