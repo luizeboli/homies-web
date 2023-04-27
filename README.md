@@ -5,7 +5,7 @@ This is the frontend part of Homies Chat application. [Here's](https://github.co
 
 ## Technologies
 
-This project is primarily built using Next.js, even though it may not have been the best choice, I know. However, I wanted to take advantage of Next's new features, such as the `app`  directory.
+This project is primarily built using Next.js, even though it may not have been the best choice, I know. However, I wanted to test Next's new features, such as the `app`  directory.
 
 In the case of Homies, SSR is totally needless for several reasons:
 
