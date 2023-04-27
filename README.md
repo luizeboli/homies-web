@@ -1,8 +1,34 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+# Homies Chat
+
+This is the frontend part of Homies Chat application. [Here's](https://github.com/luizeboli/homies-api) the backend.
+
+
+## Technologies
+
+This project is primarily built using Next.js, even though it may not have been the best choice, I know. However, I wanted to take advantage of Next's new features, such as the `app`  directory.
+
+In the case of Homies, SSR is totally needless for several reasons:
+
+- All the application is behind an authentication screen, which means Google won't index it;
+- We don't have a landing page;
+- We don't need to worry about SEO;
+- Since Homies is a chat app, a lot of dynamic content is needed which can be difficult to handle server-client state;
+
+Actually it's been pretty tough to manage state from server to client, as the data is continuously updated through websockets connection.
+
+The CSS is handled by Tailwind. This is my first experience with this library. It's been easy and fun to build components using Tailwind. You have a design system from the beginning. However, CSS newcomers should pay attention to the fact that you should learn CSS first so you know whats behind Tailwind. It's like learning React before Javascript.
 
 ## Getting Started
 
-First, run the development server:
+First, install all dependencies:
+
+```bash
+yarn
+# or
+npm install
+```
+
+Then, run the development server
 
 ```bash
 npm run dev
@@ -11,28 +37,3 @@ yarn dev
 # or
 pnpm dev
 ```
-
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
-
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
-
-[API routes](https://nextjs.org/docs/api-routes/introduction) can be accessed on [http://localhost:3000/api/hello](http://localhost:3000/api/hello). This endpoint can be edited in `pages/api/hello.ts`.
-
-The `pages/api` directory is mapped to `/api/*`. Files in this directory are treated as [API routes](https://nextjs.org/docs/api-routes/introduction) instead of React pages.
-
-This project uses [`next/font`](https://nextjs.org/docs/basic-features/font-optimization) to automatically optimize and load Inter, a custom Google Font.
-
-## Learn More
-
-To learn more about Next.js, take a look at the following resources:
-
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
-
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
