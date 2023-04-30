@@ -22,7 +22,7 @@ export function ChatMessageListItem({ message }: ChatMessageListItemProps) {
           {message.author.username}
         </span>
         <span className="mb-2">{message.content}</span>
-        <div className="flex items-center">
+        <div className="flex items-center justify-end">
           <span className="text-right text-xxs text-zinc-300">
             {new Date(message.createdAt).toLocaleTimeString("en-US")}
           </span>
