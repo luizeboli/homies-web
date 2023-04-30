@@ -10,6 +10,7 @@ export interface AppStoreState {
 export interface AppStore extends AppStoreState {
   addMessage: (message: Message) => void;
   updateMessage: (messageId: string, message: Partial<Message>) => void;
+  removeMessage: (messageId: string) => void;
   addConversation: (conversation: Conversation) => void;
   initializePieceOfState: (state: Partial<AppStoreState>) => void;
 }
@@ -27,6 +28,11 @@ const store = create(
           ...state.messages[messageId],
           ...message,
         };
+      });
+    },
+    removeMessage: (messageId) => {
+      set((state) => {
+        delete state.messages[messageId];
       });
     },
 
