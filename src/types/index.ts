@@ -23,3 +23,7 @@ export type Message = {
   content: string;
   createdAt: Date;
 };
+
+export type CreateMessage = {
+  content: string;
+};

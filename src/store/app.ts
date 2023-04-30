@@ -15,7 +15,7 @@ export interface AppStore extends AppStoreState {
 const store = create<AppStore>((set) => ({
   messages: [],
   addMessage: (message) =>
-    set((state) => ({ messages: [message, ...state.messages] })),
+    set((state) => ({ messages: [...state.messages, message] })),
   conversations: [],
   addConversation: (conversation) =>
     set((state) => ({

@@ -1,4 +1,5 @@
 "use client";
+import { useCreateMessage } from "@/mutations/useCreateMessage";
 import { Conversation } from "@/types";
 import { formatConversationUsers } from "@/utils/formatConversationUsers";
 import { useAuth } from "@clerk/nextjs";
@@ -14,10 +15,18 @@ export function ChatMessageInput({
 }: ChatMessageInputProps) {
   const { userId } = useAuth();
   const inputRef = useRef<HTMLInputElement | null>(null);
+  const { mutate, isSuccess } = useCreateMessage({
+    onSuccess: (data) => {
+      console.log({ data }, "SENT MESSAGE FROM SERVER");
+    },
+  });
 
-  const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
+  const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
-    console.log(inputRef.current?.value);
+    const message = inputRef.current?.value.trim();
+    if (!message) return;
+
+    mutate({ content: message });
   };
 
   const usersPlaceholder = useMemo(() => {
@@ -27,6 +36,10 @@ export function ChatMessageInput({
       .map((user) => user.username)
       .join(", ");
   }, [activeConversation, userId]);
+
+  if (isSuccess) {
+    inputRef.current!.value = "";
+  }
 
   return (
     <form className="flex items-center gap-4 p-6" onSubmit={handleSubmit}>
