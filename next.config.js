@@ -5,7 +5,7 @@ const nextConfig = {
   },
   reactStrictMode: true,
   images: {
-    domains: ["placehold.co", "cloudflare-ipfs.com"],
+    domains: ["placehold.co", "cloudflare-ipfs.com", "i.pravatar.cc"],
   },
   async rewrites() {
     return [
