@@ -22,6 +22,7 @@ export type Message = {
   author: User;
   content: string;
   createdAt: Date;
+  isSent?: boolean;
 };
 
 export type CreateMessage = {
