@@ -15,7 +15,7 @@ export function ChatMessageInput({
 }: ChatMessageInputProps) {
   const { userId } = useAuth();
   const inputRef = useRef<HTMLInputElement | null>(null);
-  const { mutate, isSuccess } = useCreateMessage();
+  const { mutate, isLoading } = useCreateMessage();
 
   const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
@@ -33,7 +33,7 @@ export function ChatMessageInput({
       .join(", ");
   }, [activeConversation, userId]);
 
-  if (isSuccess && inputRef.current) {
+  if (isLoading && inputRef.current) {
     inputRef.current.value = "";
   }
 
