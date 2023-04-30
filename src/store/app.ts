@@ -4,7 +4,7 @@ import { immer } from "zustand/middleware/immer";
 import createSelectors from "./createSelectors";
 
 export interface AppStoreState {
-  messages: { [key: string]: Message };
+  messages: { [messageId: string]: Message };
   conversations: Conversation[];
 }
 export interface AppStore extends AppStoreState {
