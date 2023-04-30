@@ -15,11 +15,7 @@ export function ChatMessageInput({
 }: ChatMessageInputProps) {
   const { userId } = useAuth();
   const inputRef = useRef<HTMLInputElement | null>(null);
-  const { mutate, isSuccess } = useCreateMessage({
-    onSuccess: (data) => {
-      console.log({ data }, "SENT MESSAGE FROM SERVER");
-    },
-  });
+  const { mutate, isSuccess } = useCreateMessage();
 
   const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
