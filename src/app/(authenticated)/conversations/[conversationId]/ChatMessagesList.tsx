@@ -27,7 +27,7 @@ export function ChatMessagesList({ messages }: ChatMessagesListProps) {
 
   return (
     <div className="mt-auto overflow-hidden">
-      <ul className="flex h-full flex-col items-start gap-7 overflow-y-auto p-6 custom-scroll">
+      <ul className="flex h-full flex-col-reverse items-start gap-7 overflow-y-auto p-6 custom-scroll">
         {messages.map((message) => (
           <ChatMessageListItem key={message.id} message={message} />
         ))}

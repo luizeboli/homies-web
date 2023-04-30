@@ -19,7 +19,7 @@ const store = create(
     messages: {},
     addMessage: (message) =>
       set((state) => {
-        state.messages[message.id] = message;
+        state.messages = { [message.id]: message, ...state.messages };
       }),
     updateMessage: (messageId, message) => {
       set((state) => {
