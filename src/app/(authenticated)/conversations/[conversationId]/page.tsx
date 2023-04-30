@@ -16,8 +16,13 @@ export default async function Page({ params }: PageProps) {
     `/conversations/${conversationId}/messages?take=50`
   );
 
+  const messagesToObject = messages.reduce(
+    (acc, message) => ({ ...acc, [message.id]: { ...message, isSent: true } }),
+    {}
+  );
+
   return (
-    <StateInitializer state={{ messages }}>
+    <StateInitializer state={{ messages: messagesToObject }}>
       <ChatTimeline />
     </StateInitializer>
   );

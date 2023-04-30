@@ -70,7 +70,7 @@ export function ChatTimeline() {
       </div>
 
       <div className="flex h-full grow flex-col overflow-hidden rounded-xl bg-neutral-800">
-        <ChatMessagesList messages={messages} />
+        <ChatMessagesList messages={Object.values(messages)} />
 
         <ChatMessageInput activeConversation={activeConversation} />
       </div>
