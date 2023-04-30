@@ -5,7 +5,10 @@ module.exports = {
     extend: {
       backgroundImage: ({theme}) => ({
         'arrow-gradient': `radial-gradient(circle at bottom left, transparent 65%, ${theme('colors.neutral.600')} 65%);`
-      })
+      }),
+      fontSize: {
+        xxs: ".625rem",
+      }
     },
   },
   plugins: [
