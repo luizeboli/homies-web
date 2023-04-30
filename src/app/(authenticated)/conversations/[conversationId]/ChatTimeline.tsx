@@ -35,13 +35,17 @@ export function ChatTimeline() {
     if (!socket) return;
 
     socket.on(WEBSOCKET_EVENTS.MESSAGE.CREATED, (message) => {
-      addMessage(message);
+      // Messages from current user is handled by the mutation
+      const isFromCurrentUser = message.author.id === userId;
+      if (isFromCurrentUser) return;
+
+      addMessage({ ...message, isSent: true });
     });
 
     return () => {
       socket.off(WEBSOCKET_EVENTS.MESSAGE.CREATED);
     };
-  }, [socket, addMessage]);
+  }, [socket, addMessage, userId]);
 
   useEffect(() => {
     if (!socket) return;
