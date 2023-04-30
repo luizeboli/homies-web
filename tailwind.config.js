@@ -4,7 +4,8 @@ module.exports = {
   theme: {
     extend: {
       backgroundImage: ({theme}) => ({
-        'arrow-gradient': `radial-gradient(circle at bottom left, transparent 65%, ${theme('colors.neutral.600')} 65%);`
+        'arrow-gradient': `radial-gradient(circle at bottom left, transparent 65%, ${theme('colors.neutral.600')} 65%);`,
+        'arrow-gradient-purple': `radial-gradient(circle at bottom left, transparent 65%, ${theme('colors.purple.800')} 65%);`
       }),
       fontSize: {
         xxs: ".625rem",

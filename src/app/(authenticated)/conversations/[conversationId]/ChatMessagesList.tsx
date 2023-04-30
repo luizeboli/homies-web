@@ -1,12 +1,14 @@
 import { Message } from "@/types";
 import Image from "next/image";
 import { ChatMessageListItem } from "./ChatMessageListItem";
+import { useAuth } from "@clerk/nextjs";
 
 type ChatMessagesListProps = {
   messages: Message[];
 };
 
 export function ChatMessagesList({ messages }: ChatMessagesListProps) {
+  const { userId } = useAuth();
   if (!messages.length) {
     return (
       <div className="mx-auto flex h-full w-full max-w-md flex-col items-center justify-center gap-6 px-10 text-center">
@@ -29,7 +31,11 @@ export function ChatMessagesList({ messages }: ChatMessagesListProps) {
     <div className="mt-auto overflow-hidden">
       <ul className="flex h-full flex-col-reverse items-start gap-7 overflow-y-auto p-6 custom-scroll">
         {messages.map((message) => (
-          <ChatMessageListItem key={message.id} message={message} />
+          <ChatMessageListItem
+            key={message.id}
+            message={message}
+            isSelfMessage={message.authorId === userId}
+          />
         ))}
       </ul>
     </div>
