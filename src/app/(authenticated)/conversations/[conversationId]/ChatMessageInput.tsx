@@ -33,8 +33,8 @@ export function ChatMessageInput({
       .join(", ");
   }, [activeConversation, userId]);
 
-  if (isSuccess) {
-    inputRef.current!.value = "";
+  if (isSuccess && inputRef.current) {
+    inputRef.current.value = "";
   }
 
   return (
