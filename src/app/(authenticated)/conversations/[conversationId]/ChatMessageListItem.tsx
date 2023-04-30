@@ -1,4 +1,5 @@
 import { Message } from "@/types";
+import { CheckIcon } from "@heroicons/react/24/solid";
 import Image from "next/image";
 
 type ChatMessageListItemProps = {
@@ -21,9 +22,15 @@ export function ChatMessageListItem({ message }: ChatMessageListItemProps) {
           {message.author.username}
         </span>
         <span className="mb-2">{message.content}</span>
-        <span className="text-right text-xs text-zinc-300">
-          {new Date(message.createdAt).toLocaleTimeString("en-US")}
-        </span>
+        <div className="flex items-center">
+          <span className="text-right text-xxs text-zinc-300">
+            {new Date(message.createdAt).toLocaleTimeString("en-US")}
+          </span>
+          <span className="relative ml-2 h-3 w-3">
+            {message.isSent && <CheckIcon className="absolute w-3" />}
+            <CheckIcon className="absolute right-1 w-3" />
+          </span>
+        </div>
       </div>
     </li>
   );
